@@ -10,6 +10,8 @@ class Food(object):
         self._coords = coords
         self.hitbox = pygame.Rect(coords, (50, 50))
         self._image = pygame.transform.rotate(img, 0)
+        self.isEaten = False
 
     def blank(self):
         self._image = pygame.transform.rotate(blank, 0)
+        self.isEaten = True

@@ -1,5 +1,7 @@
 import pygame
 import os
+from food import Food
+
 img = pygame.image.load(os.path.join('Assets', 'MiniRowdy.png'))
 
 
@@ -78,4 +80,20 @@ class Rowdy(object):
             if self._facing == "w":
                 if food.hitbox.collidepoint(self._coords[0]-50, self._coords[1]):
                     food.blank()
+
+    def wallOnRight(self, walls):
+        for wall in walls:
+            if self._facing == "n":
+                if wall.collidepoint(self._coords[0]+50, self._coords[1]):
+                    return True
+            if self._facing == "e":
+                if wall.collidepoint(self._coords[0], self._coords[1]+50):
+                    return True
+            if self._facing == "s":
+                if wall.collidepoint(self._coords[0]-50, self._coords[1]):
+                    return True
+            if self._facing == "w":
+                if wall.collidepoint(self._coords[0], self._coords[1]-50):
+                    return True
+        return False
 
