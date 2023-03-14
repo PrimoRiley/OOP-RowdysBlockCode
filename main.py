@@ -10,6 +10,13 @@ WIDTH, HEIGHT = 900, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 def drawgrid(w, rows, surface):
+    """TESTING
+
+    Args:
+        w (_type_): _description_
+        rows (_type_): _description_
+        surface (_type_): _description_
+    """    
     sizebtwn = w // rows
     for i in range(0, w, sizebtwn):
         x, y = i, i
