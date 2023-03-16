@@ -2,6 +2,8 @@ import pygame
 import os
 from rowdy import Rowdy
 from food import Food
+from block import Block
+from processBlocks import ProcessBlocks
 
 img = pygame.image.load(os.path.join('Assets', 'MiniRowdy.png'))
 left_arrow = pygame.image.load(os.path.join('Assets', 'left_arrow.png'))
@@ -13,6 +15,7 @@ startButton = pygame.image.load(os.path.join('Assets', 'StartButton.png'))
 #screen = pygame.image.load(os.path.join('Assets', 'GameDisplay.png'))
 
 WIDTH, HEIGHT = 900, 500
+
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 def drawgrid(w, rows, surface):
@@ -111,16 +114,17 @@ def main():
 
         for food in Foods:
             WIN.blit(food._image, food._coords)
-
-
+        
+        # White code bar
         pygame.draw.rect(WIN, 'white', pygame.Rect(250, 400, 400, 50))
 
         for block in blocks:
-            pygame.draw.rect(WIN, block[0], block[1])
+            pygame.draw.rect(WIN, block.color, block)
 
         for wall in walls:
             pygame.draw.rect(WIN, 'gray', wall)
 
+        # Color pallet
         pygame.draw.rect(WIN, 'light green', pygame.Rect(805, 105, 40, 40))
         pygame.draw.rect(WIN, 'light blue', pygame.Rect(805, 155, 40, 40))
         pygame.draw.rect(WIN, 'plum', pygame.Rect(805, 205, 40, 40))
@@ -131,9 +135,10 @@ def main():
         WIN.blit(right_arrow, (455,455))
         WIN.blit(currentColor, (250,355))
         WIN.blit(startButton, (130,405))
-        
 
+        # Block color: 
         pygame.draw.rect(WIN, block_color, pygame.Rect(455, 355, 40, 40))
+
         #WIN.blit(screen, (0,0))
 
         for event in pygame.event.get():
@@ -146,12 +151,15 @@ def main():
                 if mouse_presses[0]:
                     cur = pygame.mouse.get_pos()
                     copy_cur = (cur[0],cur[1])
-                    yeet = (((cur[0]//50)*50)+5,((cur[1]//50)*50)+5)
+                    yeet = [((cur[0]//50)*50)+5,((cur[1]//50)*50)+5]
                     is_block = False
+                    # Check if there is already a block placed if so remove it
                     for block in blocks:
-                        if pygame.Rect(yeet, (40, 40)) == block[1]:
+                        if block.colliderect(pygame.Rect(yeet, (40, 40))):
                             blocks.remove(block)
                             is_block = True
+
+                    # Check if click color pallet
                     if pygame.Rect(yeet, (40, 40)).colliderect(pygame.Rect(805, 105, 40, 40)):
                         print("green color")
                         block_color = "light green"
@@ -161,47 +169,36 @@ def main():
                     if pygame.Rect(yeet, (40, 40)).colliderect(pygame.Rect(805, 205, 40, 40)):
                         print("plum color")
                         block_color = "plum"
+
+                    # Check if Block is placed within white bar
                     if not is_block and yeet[1] > 400 and yeet[1] < 450 and yeet[0] > 250: 
-                        blocks.append([block_color,pygame.Rect(yeet, (40, 40))])
+                        temp_block = Block(coords=yeet, color=block_color, left=yeet[0],top=yeet[1], width=40, height=40)
+                        blocks.append(temp_block)
+
+                    # If left arrow clicked shift blocks to the left
                     if pygame.Rect(yeet, (40, 40)).colliderect(pygame.Rect(405, 455, 25, 40)):
                         for block in blocks:
-                            block[1].move_ip(-50,0)
+                            block.move_ip(-50,0)
+                            block.coords[0] -= 50
                             print(block)
+
+                    # If right arrow clicked shift blocks to the right
                     if pygame.Rect(yeet, (40, 40)).colliderect(pygame.Rect(455, 455, 25, 40)):
                         for block in blocks:
-                            block[1].move_ip(50,0)
+                            block.move_ip(50,0)
+                            block.coords[0] += 50
                             print(block)
 
+                    # Check if start button is clicked
                     if pygame.Rect(copy_cur, (1, 1)).colliderect(pygame.Rect(105, 405, 130, 40)):
                         print("start")
-                        '''
-                        while not blocks[0][1].colliderect(pygame.Rect(205, 405, 30, 30)):
-                            for block in blocks:
-                                block[1].move_ip(50,0)
-                        '''
-                        x, y = 200, 400
-                        test_rect = pygame.Rect((x, y), (25, 25))
+                        process_block_class = ProcessBlocks(blocks)
                         block_index = 0
-                        block_string = ""
-                        for i in range(len(blocks)):
-                            if test_rect.colliderect(blocks[i][1]) != -1:
-                                process_blocks = True
-                                if blocks[i][0] == "light green":
-                                    #rowdy_class.foodCollide(Foods)
-                                    #if rowdy_class.wallCollide(walls):
-                                        #rowdy_class.move()
-                                    block_string += "m"
-                                elif blocks[i][0] == "light blue":
-                                    #rowdy_class.turn_right()
-                                    block_string += "r"
-                                elif blocks[i][0] == "plum":
-                                    #rowdy_class.turn_left()
-                                    block_string += "l"
-                                print("hit")
-                            x += 50
-                            test_rect = pygame.Rect((x, y), (25, 25))
-
+                        process_blocks = True
+                        block_string = process_block_class.getInstructionString()
+                        
                     print(cur, yeet)
+                    print(block_string)
                     #wall_Coords_list.append(rounded_cords)
                     #walls.append(pygame.Rect(rounded_cords, (50,50)))
 
@@ -243,32 +240,12 @@ def main():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_x:
-                    '''
-                    while not blocks[0][1].colliderect(pygame.Rect(205, 405, 30, 30)):
-                        for block in blocks:
-                            block[1].move_ip(50,0)
-                    '''
-                    x, y = 200, 400
-                    test_rect = pygame.Rect((x, y), (25, 25))
+                    print("start")
                     block_index = 0
-                    block_string = ""
-                    for i in range(len(blocks)):
-                        if test_rect.colliderect(blocks[i][1]) != -1:
-                            process_blocks = True
-                            if blocks[i][0] == "light green":
-                                #rowdy_class.foodCollide(Foods)
-                                #if rowdy_class.wallCollide(walls):
-                                    #rowdy_class.move()
-                                block_string += "m"
-                            elif blocks[i][0] == "light blue":
-                                #rowdy_class.turn_right()
-                                block_string += "r"
-                            elif blocks[i][0] == "plum":
-                                #rowdy_class.turn_left()
-                                block_string += "l"
-                            print("hit")
-                        x += 50
-                        test_rect = pygame.Rect((x, y), (25, 25))
+                    process_block_class = ProcessBlocks(blocks)
+                    process_blocks = True
+                    block_string = process_block_class.getInstructionString()
+                    print(cur, yeet, block_string)
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
@@ -296,8 +273,9 @@ def main():
                 rowdy_class.turn_right()
             elif block_string[block_index] == "l":
                 rowdy_class.turn_left()
-            block_index += 1    
-            pygame.time.delay(300)
+            pygame.draw.rect(WIN, "black", pygame.Rect((255 + block_index*50), 450, 40, 10)) 
+            block_index += 1   
+            pygame.time.delay(750)
 
         
         if solve_maze and not allFoodEaten(Foods):   
