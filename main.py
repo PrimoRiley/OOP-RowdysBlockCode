@@ -1,3 +1,4 @@
+import asyncio
 import pygame
 import os
 from rowdy import Rowdy
@@ -10,6 +11,9 @@ left_arrow = pygame.image.load(os.path.join('Assets', 'left_arrow.png'))
 right_arrow = pygame.image.load(os.path.join('Assets', 'right_arrow.png'))
 currentColor = pygame.image.load(os.path.join('Assets', 'CurrentColor.png'))
 startButton = pygame.image.load(os.path.join('Assets', 'StartButton.png'))
+light_green = pygame.image.load(os.path.join('Assets', 'block_arrow.png'))
+light_blue = pygame.image.load(os.path.join('Assets', 'turnRight.png'))
+plum = pygame.image.load(os.path.join('Assets', 'turnLeft.png'))
 
 
 #screen = pygame.image.load(os.path.join('Assets', 'GameDisplay.png'))
@@ -38,40 +42,10 @@ def allFoodEaten(Foods):
             return False
     return True
 
-# TODO fix run blocks
-def runBlocks(blocks,block_index,block_string,process_blocks):
-    '''
-    while not blocks[0][1].colliderect(pygame.Rect(205, 405, 30, 30)):
-    for block in blocks:
-    block[1].move_ip(50,0)
-                    '''
-    x, y = 200, 400
-    test_rect = pygame.Rect((x, y), (25, 25))
-    block_index = 0
-    block_string = ""
-    for i in range(len(blocks)):
-        if test_rect.colliderect(blocks[i][1]) != -1:
-            process_blocks = True
-            if blocks[i][0] == "light green":
-                #rowdy_class.foodCollide(Foods)
-                #if rowdy_class.wallCollide(walls):
-                    #rowdy_class.move()
-                block_string += "m"
-            elif blocks[i][0] == "light blue":
-                #rowdy_class.turn_right()
-                block_string += "r"
-            elif blocks[i][0] == "plum":
-                #rowdy_class.turn_left()
-                block_string += "l"
-        print("hit")
-        x += 50
-        test_rect = pygame.Rect((x, y), (25, 25))
-
-
 rowdy_class_coords = [150, 50]
 rowdy_class = Rowdy(rowdy_class_coords)
 
-def main():
+async def main():
 
     run = True
 
@@ -91,6 +65,7 @@ def main():
 
     blocks = []
     block_color = "light green"
+    block_image = light_green
 
     process_blocks = False
     block_index = 0
@@ -120,14 +95,18 @@ def main():
 
         for block in blocks:
             pygame.draw.rect(WIN, block.color, block)
+            WIN.blit(block.img, block.coords)
 
         for wall in walls:
             pygame.draw.rect(WIN, 'gray', wall)
 
         # Color pallet
         pygame.draw.rect(WIN, 'light green', pygame.Rect(805, 105, 40, 40))
+        WIN.blit(light_green, (805,105))
         pygame.draw.rect(WIN, 'light blue', pygame.Rect(805, 155, 40, 40))
+        WIN.blit(light_blue, (805,155))
         pygame.draw.rect(WIN, 'plum', pygame.Rect(805, 205, 40, 40))
+        WIN.blit(plum, (805,205))
         pygame.draw.rect(WIN, 'orange', pygame.Rect(805, 255, 40, 40))
 
         WIN.blit(rowdy_class._image, rowdy_class._coords)
@@ -138,6 +117,7 @@ def main():
 
         # Block color: 
         pygame.draw.rect(WIN, block_color, pygame.Rect(455, 355, 40, 40))
+        WIN.blit(block_image, (455,355))
 
         #WIN.blit(screen, (0,0))
 
@@ -163,12 +143,15 @@ def main():
                     if pygame.Rect(yeet, (40, 40)).colliderect(pygame.Rect(805, 105, 40, 40)):
                         print("green color")
                         block_color = "light green"
+                        block_image = light_green
                     if pygame.Rect(yeet, (40, 40)).colliderect(pygame.Rect(805, 155, 40, 40)):
                         print("blue color")
                         block_color = "light blue"
+                        block_image = light_blue
                     if pygame.Rect(yeet, (40, 40)).colliderect(pygame.Rect(805, 205, 40, 40)):
                         print("plum color")
                         block_color = "plum"
+                        block_image = plum
 
                     # Check if Block is placed within white bar
                     if not is_block and yeet[1] > 400 and yeet[1] < 450 and yeet[0] > 250: 
@@ -206,13 +189,12 @@ def main():
                 if event.key == pygame.K_z:
                     cur = pygame.mouse.get_pos()
                     rounded_cords = ((cur[0]//50)*50,(cur[1]//50)*50)
-                    print(rounded_cords)
                     if pygame.Rect(rounded_cords, (50,50)) in walls:
                         print("already a wall there")
                         walls.remove(pygame.Rect(rounded_cords, (50,50)))
                     else:
                         walls.append(pygame.Rect(rounded_cords, (50,50)))
-                    print(len(walls))
+                    print(f"Number of walls: {len(walls)}. Wall placed at {rounded_cords}")
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_c:
@@ -256,13 +238,13 @@ def main():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_l:
-                    if solve_maze:
-                        solve_maze = False
-                    else:
-                        solve_maze = True
-        
+                    solve_maze = not solve_maze
+            await asyncio.sleep(0)
+
 
         if process_blocks:
+            if block_index != 0:
+                pygame.draw.rect(WIN, "black", pygame.Rect((255 + (block_index-1)*50), 450, 40, 10)) 
             if block_index >= len(blocks):
                 process_blocks = False
             elif block_string[block_index] == "m":
@@ -273,7 +255,6 @@ def main():
                 rowdy_class.turn_right()
             elif block_string[block_index] == "l":
                 rowdy_class.turn_left()
-            pygame.draw.rect(WIN, "black", pygame.Rect((255 + block_index*50), 450, 40, 10)) 
             block_index += 1   
             pygame.time.delay(750)
 
@@ -293,9 +274,11 @@ def main():
             pygame.time.delay(100)
         
         pygame.display.update()
+        await asyncio.sleep(0)
+    await asyncio.sleep(0)
     #print(wall_Coords_list)
     pygame.quit()
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run( main() )

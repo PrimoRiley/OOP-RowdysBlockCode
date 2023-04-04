@@ -7,12 +7,18 @@ img = pygame.image.load(os.path.join('Assets', 'MiniRowdy.png'))
 
 class Rowdy(object):
     def __init__(self, coords):
+        """
+        Constructor
+        """
         self._coords = coords
         self._facing = "e"
         self._hitbox = pygame.Rect(coords, (50, 50))
         self._image = pygame.transform.rotate(img, 0)
 
     def move(self):
+        """
+        Moves rowdy 1 space in the direction he is facing
+        """
         if self._facing == "n":
             self._coords[1] -= 50
         elif self._facing == "e":
@@ -23,6 +29,9 @@ class Rowdy(object):
             self._coords[0] -= 50
 
     def turn_right(self):
+        """
+        Rotates rowdy clokwise 90 degrees in place
+        """
         if self._facing == "n":
             self._facing = "e"
             self._image = pygame.transform.rotate(self._image, -90)
@@ -37,6 +46,9 @@ class Rowdy(object):
             self._image = pygame.transform.rotate(self._image, -90)
 
     def turn_left(self):
+        """
+        Rotates rowdy counterclokwise 90 degrees in place
+        """
         if self._facing == "n":
             self._facing = "w"
             self._image = pygame.transform.rotate(self._image, 90)
@@ -82,6 +94,9 @@ class Rowdy(object):
                     food.blank()
 
     def wallOnRight(self, walls):
+        """
+        Return True if wall on right of rowdy
+        """
         for wall in walls:
             if self._facing == "n":
                 if wall.collidepoint(self._coords[0]+50, self._coords[1]):
