@@ -277,7 +277,6 @@ async def main():
         await asyncio.sleep(0)
     await asyncio.sleep(0)
     #print(wall_Coords_list)
-    await asyncio.sleep(0)
     pygame.quit()
 
 
