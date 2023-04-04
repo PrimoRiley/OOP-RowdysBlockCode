@@ -1,3 +1,4 @@
+import asyncio
 import pygame
 import os
 from rowdy import Rowdy
@@ -71,7 +72,7 @@ def runBlocks(blocks,block_index,block_string,process_blocks):
 rowdy_class_coords = [150, 50]
 rowdy_class = Rowdy(rowdy_class_coords)
 
-def main():
+async def main():
 
     run = True
 
@@ -294,8 +295,10 @@ def main():
         
         pygame.display.update()
     #print(wall_Coords_list)
+    await asyncio.sleep(0)
     pygame.quit()
 
 
-if __name__ == "__main__":
-    main()
+
+asyncio.run(main())
+# ! python -m pygbag directory
