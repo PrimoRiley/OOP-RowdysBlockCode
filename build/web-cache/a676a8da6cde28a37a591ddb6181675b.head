@@ -13,6 +13,7 @@ Cache-Control: max-age=600
 x-proxy-cache: MISS
 X-GitHub-Request-Id: 472A:3AF2:EC6E:14DDE:642C9AEC
 Accept-Ranges: bytes
+<<<<<<< HEAD
 Date: Tue, 04 Apr 2023 22:23:01 GMT
 Via: 1.1 varnish
 Age: 0
@@ -22,4 +23,15 @@ X-Cache-Hits: 1
 X-Timer: S1680646982.654888,VS0,VE61
 Vary: Accept-Encoding
 X-Fastly-Request-ID: ce5f0b73c9c31a7a034fcbb70a809b7ba38dd657
+=======
+Date: Tue, 04 Apr 2023 21:47:24 GMT
+Via: 1.1 varnish
+Age: 0
+X-Served-By: cache-den8259-DEN
+X-Cache: MISS
+X-Cache-Hits: 0
+X-Timer: S1680644845.637296,VS0,VE110
+Vary: Accept-Encoding
+X-Fastly-Request-ID: 423669fca667a4f81f30543caa71e9c679aa727d
+>>>>>>> 99700466f8dd910a99f3b0ebc2c4eef8ad20bad8
 
