@@ -1,5 +1,5 @@
-import asyncio
-import pygame
+import pygame, sys
+from button import Button
 import os
 from rowdy import Rowdy
 from food import Food
@@ -14,13 +14,6 @@ startButton = pygame.image.load(os.path.join('Assets', 'StartButton.png'))
 light_green = pygame.image.load(os.path.join('Assets', 'block_arrow.png'))
 light_blue = pygame.image.load(os.path.join('Assets', 'turnRight.png'))
 plum = pygame.image.load(os.path.join('Assets', 'turnLeft.png'))
-
-
-#screen = pygame.image.load(os.path.join('Assets', 'GameDisplay.png'))
-
-WIDTH, HEIGHT = 900, 500
-
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 def drawgrid(w, rows, surface):
     """TESTING
@@ -42,12 +35,22 @@ def allFoodEaten(Foods):
             return False
     return True
 
-rowdy_class_coords = [150, 50]
-rowdy_class = Rowdy(rowdy_class_coords)
+pygame.init()
 
-async def main():
+SCREEN = pygame.display.set_mode((900, 500))
+pygame.display.set_caption("Menu")
 
-    run = True
+BG = pygame.image.load("assets/MainScreenEmptyButtons.png")
+LEVELS_BG = pygame.image.load("assets/LevelsBGEmptyButtons.png")
+PLAY_BG = pygame.image.load("assets/PlayBG.png")
+
+def get_font(size): # Returns Press-Start-2P in the desired size
+    return pygame.font.Font("assets/font.ttf", size)
+
+def play():
+
+    rowdy_class_coords = [150, 50]
+    rowdy_class = Rowdy(rowdy_class_coords)
 
     top_border = pygame.Rect((0, 0), (900, 50))
     left_border = pygame.Rect((0, 0), (150, 500))
@@ -75,59 +78,67 @@ async def main():
 
     solve_maze = False
 
-    '''
-    wall_Coords_list = [(200, 50), (200, 100), (150, 200), (200, 200), (250, 200), (300, 200)]
 
-    for wall in wall_Coords_list:
-        walls.append(pygame.Rect(wall, (50,50)))
-    '''
+    while True:
+        PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
-    while run:
-        WIN.fill("sky blue")
+        SCREEN.fill("sky blue")
 
-        drawgrid(WIN.get_width(), 18, WIN)
+        drawgrid(SCREEN.get_width(), 18, SCREEN)
+
+        
 
         for food in Foods:
-            WIN.blit(food._image, food._coords)
+            SCREEN.blit(food._image, food._coords)
         
         # White code bar
-        pygame.draw.rect(WIN, 'white', pygame.Rect(250, 400, 400, 50))
+        pygame.draw.rect(SCREEN, 'white', pygame.Rect(250, 400, 400, 50))
 
         for block in blocks:
-            pygame.draw.rect(WIN, block.color, block)
-            WIN.blit(block.img, block.coords)
+            pygame.draw.rect(SCREEN, block.color, block)
+            SCREEN.blit(block.img, block.coords)
 
         for wall in walls:
-            pygame.draw.rect(WIN, 'gray', wall)
+            pygame.draw.rect(SCREEN, 'gray', wall)
+
+        SCREEN.blit(PLAY_BG, (0,0))
+            
 
         # Color pallet
-        pygame.draw.rect(WIN, 'light green', pygame.Rect(805, 105, 40, 40))
-        WIN.blit(light_green, (805,105))
-        pygame.draw.rect(WIN, 'light blue', pygame.Rect(805, 155, 40, 40))
-        WIN.blit(light_blue, (805,155))
-        pygame.draw.rect(WIN, 'plum', pygame.Rect(805, 205, 40, 40))
-        WIN.blit(plum, (805,205))
-        pygame.draw.rect(WIN, 'orange', pygame.Rect(805, 255, 40, 40))
+        pygame.draw.rect(SCREEN, 'light green', pygame.Rect(805, 105, 40, 40))
+        SCREEN.blit(light_green, (805,105))
+        pygame.draw.rect(SCREEN, 'light blue', pygame.Rect(805, 155, 40, 40))
+        SCREEN.blit(light_blue, (805,155))
+        pygame.draw.rect(SCREEN, 'plum', pygame.Rect(805, 205, 40, 40))
+        SCREEN.blit(plum, (805,205))
+        pygame.draw.rect(SCREEN, 'orange', pygame.Rect(805, 255, 40, 40))
 
-        WIN.blit(rowdy_class._image, rowdy_class._coords)
-        WIN.blit(left_arrow, (405,455))
-        WIN.blit(right_arrow, (455,455))
-        WIN.blit(currentColor, (250,355))
-        WIN.blit(startButton, (130,405))
+        SCREEN.blit(rowdy_class._image, rowdy_class._coords)
+        SCREEN.blit(left_arrow, (405,455))
+        SCREEN.blit(right_arrow, (455,455))
+        SCREEN.blit(currentColor, (250,355))
+        SCREEN.blit(startButton, (130,405))
 
         # Block color: 
-        pygame.draw.rect(WIN, block_color, pygame.Rect(455, 355, 40, 40))
-        WIN.blit(block_image, (455,355))
+        pygame.draw.rect(SCREEN, block_color, pygame.Rect(455, 355, 40, 40))
+        SCREEN.blit(block_image, (455,355))
 
-        #WIN.blit(screen, (0,0))
+        #SCREEN.blit(screen, (0,0))
+
+        PLAY_BACK = Button(image=None, pos=(30, 26), 
+                            text_input="BACK", font=get_font(10), base_color="Black", hovering_color="Green")
+
+        PLAY_BACK.changeColor(PLAY_MOUSE_POS)
+        PLAY_BACK.update(SCREEN)
 
         for event in pygame.event.get():
-
             if event.type == pygame.QUIT:
-                run = False
-
+                pygame.quit()
+                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_presses = pygame.mouse.get_pressed()
+                if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
+                    main_menu()
                 if mouse_presses[0]:
                     cur = pygame.mouse.get_pos()
                     copy_cur = (cur[0],cur[1])
@@ -239,12 +250,9 @@ async def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_l:
                     solve_maze = not solve_maze
-            await asyncio.sleep(0)
-
-
         if process_blocks:
             if block_index != 0:
-                pygame.draw.rect(WIN, "black", pygame.Rect((255 + (block_index-1)*50), 450, 40, 10)) 
+                pygame.draw.rect(SCREEN, "black", pygame.Rect((255 + (block_index-1)*50), 450, 40, 10)) 
             if block_index >= len(blocks):
                 process_blocks = False
             elif block_string[block_index] == "m":
@@ -274,11 +282,71 @@ async def main():
             pygame.time.delay(100)
         
         pygame.display.update()
-        await asyncio.sleep(0)
-    await asyncio.sleep(0)
-    #print(wall_Coords_list)
-    pygame.quit()
 
+    
+def options():
+    while True:
+        SCREEN.blit(LEVELS_BG, (0, 0))
+        
+        OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
-if __name__ == "__main__":
-    asyncio.run( main() )
+        OPTIONS_BACK = Button(image=None, pos=(30, 26), 
+                            text_input="BACK", font=get_font(10), base_color="Black", hovering_color="Green")
+        LEVELONE_BUTTON = Button(image=pygame.image.load("assets/LevelButtonBase.png"), pos=(450, 190), 
+                            text_input="Level 1", font=get_font(15), base_color="black", hovering_color="White")
+        LEVELTWO_BUTTON = Button(image=pygame.image.load("assets/LevelButtonBase.png"), pos=(450, 248), 
+                            text_input="Level 2", font=get_font(15), base_color="black", hovering_color="White")
+        LEVELTHREE_BUTTON = Button(image=pygame.image.load("assets/LevelButtonBase.png"), pos=(450, 305), 
+                            text_input="Level 3", font=get_font(15), base_color="black", hovering_color="White")
+
+        for button in [OPTIONS_BACK, LEVELONE_BUTTON, LEVELTWO_BUTTON, LEVELTHREE_BUTTON]:
+            button.changeColor(OPTIONS_MOUSE_POS)
+            button.update(SCREEN)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
+                    main_menu()
+                if LEVELONE_BUTTON.checkForInput(OPTIONS_MOUSE_POS):
+                    play()
+
+        pygame.display.update()
+
+def main_menu():
+    while True:
+        SCREEN.blit(BG, (0, 0))
+
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+        PLAY_BUTTON = Button(image=pygame.image.load("assets/ButtonBase.png"), pos=(450, 285), 
+                            text_input="Start", font=get_font(20), base_color="black", hovering_color="White")
+        OPTIONS_BUTTON = Button(image=pygame.image.load("assets/ButtonBase.png"), pos=(450, 350), 
+                            text_input="Levels", font=get_font(20), base_color="black", hovering_color="White")
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/ButtonBase.png"), pos=(450, 415), 
+                            text_input="Settings", font=get_font(20), base_color="black", hovering_color="White")
+
+        #SCREEN.blit(MENU_TEXT, MENU_RECT)
+
+        for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
+            button.changeColor(MENU_MOUSE_POS)
+            button.update(SCREEN)
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    play()
+                if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    options()
+                if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pygame.quit()
+                    sys.exit()
+
+        pygame.display.update()
+
+main_menu()
