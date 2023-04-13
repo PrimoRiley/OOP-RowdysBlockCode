@@ -2,7 +2,7 @@ import pygame
 import os
 
 blank = pygame.image.load(os.path.join('Assets', 'blank.png'))
-light_green = pygame.image.load(os.path.join('Assets', 'block_arrow.png'))
+light_green = pygame.image.load(os.path.join('Assets', 'move_arrow.png'))
 light_blue = pygame.image.load(os.path.join('Assets', 'turnRight.png'))
 plum = pygame.image.load(os.path.join('Assets', 'turnLeft.png'))
 

@@ -2,7 +2,7 @@ import pygame
 import os
 from food import Food
 
-img = pygame.image.load(os.path.join('Assets', 'MiniRowdy.png'))
+img = pygame.image.load(os.path.join('Assets', 'MiniRowdy_40.png'))
 
 
 class Rowdy(object):
@@ -20,13 +20,13 @@ class Rowdy(object):
         Moves rowdy 1 space in the direction he is facing
         """
         if self._facing == "n":
-            self._coords[1] -= 50
+            self._coords[1] -= 58.75
         elif self._facing == "e":
-            self._coords[0] += 50
+            self._coords[0] += 58.75
         elif self._facing == "s":
-            self._coords[1] += 50
+            self._coords[1] += 58.75
         elif self._facing == "w":
-            self._coords[0] -= 50
+            self._coords[0] -= 58.75
 
     def turn_right(self):
         """
