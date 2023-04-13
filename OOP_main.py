@@ -11,7 +11,7 @@ left_arrow = pygame.image.load(os.path.join('Assets', 'left_arrow.png'))
 right_arrow = pygame.image.load(os.path.join('Assets', 'right_arrow.png'))
 currentColor = pygame.image.load(os.path.join('Assets', 'CurrentColor.png'))
 startButton = pygame.image.load(os.path.join('Assets', 'StartButton.png'))
-light_green = pygame.image.load(os.path.join('Assets', 'move_arrow.png'))
+light_green = pygame.image.load(os.path.join('Assets', 'block_arrow.png'))
 light_blue = pygame.image.load(os.path.join('Assets', 'turnRight.png'))
 plum = pygame.image.load(os.path.join('Assets', 'turnLeft.png'))
 
@@ -44,14 +44,13 @@ BG = pygame.image.load("assets/MainScreenEmptyButtons.png")
 HELP_SCREEN = pygame.image.load("assets/help_screen.png")
 LEVELS_BG = pygame.image.load("assets/LevelsBGEmptyButtons.png")
 PLAY_BG = pygame.image.load("assets/PlayBG.png")
-PLAY_BG_2 = pygame.image.load("assets/PlayBG_2.png")
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/font.ttf", size)
 
 def play():
 
-    rowdy_class_coords = [195, 55]
+    rowdy_class_coords = [150, 50]
     rowdy_class = Rowdy(rowdy_class_coords)
 
     top_border = pygame.Rect((0, 0), (900, 50))
@@ -96,14 +95,14 @@ def play():
         # White code bar
         pygame.draw.rect(SCREEN, 'white', pygame.Rect(250, 400, 400, 50))
 
+        for block in blocks:
+            pygame.draw.rect(SCREEN, block.color, block)
+            SCREEN.blit(block.img, block.coords)
+
         for wall in walls:
             pygame.draw.rect(SCREEN, 'gray', wall)
 
-        SCREEN.blit(PLAY_BG_2, (0,0))
-
-        for block in blocks:
-            #pygame.draw.rect(SCREEN, block.color, block)
-            SCREEN.blit(block.img, block.coords)
+        SCREEN.blit(PLAY_BG, (0,0))
             
 
         # Color pallet
@@ -175,9 +174,8 @@ def play():
                         block_image = plum
 
                     # Check if Block is placed within white bar
-                    #if not is_block and yeet[1] > 400 and yeet[1] < 450 and yeet[0] > 250: 
-                    if True: 
-                        temp_block = Block(coords=copy_cur, color=block_color, left=yeet[0],top=yeet[1], width=40, height=40)
+                    if not is_block and yeet[1] > 400 and yeet[1] < 450 and yeet[0] > 250: 
+                        temp_block = Block(coords=yeet, color=block_color, left=yeet[0],top=yeet[1], width=40, height=40)
                         blocks.append(temp_block)
 
                     # If left arrow clicked shift blocks to the left
