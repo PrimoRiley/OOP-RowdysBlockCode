@@ -1,9 +1,9 @@
 import pygame
 import os
-from typing import Tuple
+from typing import Tuple, List
 
 class Food(object):
-    def __init__(self, coords:Tuple[int, int]) -> None:
+    def __init__(self, coords:List[int]) -> None:
         """Food object intializer
 
         Args:
