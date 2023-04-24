@@ -102,11 +102,8 @@ def play():
         SCREEN.blit(PLAY_BG_2, (0,0))
 
         for block in blocks:
-            print(block.img)
-        for block in blocks:
             #pygame.draw.rect(SCREEN, block.color, block)
             SCREEN.blit(block.img, block.coords)
-            print(block.img)
             
 
         # Color pallet
