@@ -1,58 +1,92 @@
-# import pygame
-# pygame.init()
-# from typing import Tuple
-# import unittest
-# from unittest import mock
-# from unittest.mock import patch
-# from hypothesis import given
-# import hypothesis.strategies as st
-# from button import Button
+import string
+import pygame
+import unittest 
+from typing import Tuple
+from button import Button
+from hypothesis import given 
+import hypothesis.strategies as st
+from hypothesis.strategies import sampled_from
+from unittest.mock import Mock
 
-# class TestButton(unittest.TestCase):
+
+class TestButton(unittest.TestCase):
+    @given(coords=st.tuples(st.integers(min_value=0, max_value=900), st.integers(min_value=0, max_value=900)), text = st.text(alphabet=string.ascii_letters, max_size=10), base=sampled_from(["Green", "Black"]), 
+       hover=sampled_from(["Green", "Black"]))
+    def test_button_initialization(self, coords, text, base, hover):
+        pygame.init()
+
+        image = pygame.Surface((50,50))
+        pos = coords
+        text_input = text
+        font = pygame.font.Font("assets/font.ttf", 10)
+        base_color = base
+        hovering_color = hover
+
+        button = Button(image, pos, text_input, font, base_color, hovering_color)
+
+        self.assertEqual(button._image , image)
+        self.assertEqual(button._x_pos , coords[0])
+        self.assertEqual(button._y_pos , coords[1])
+        self.assertEqual(button._font , font)
+        self.assertEqual(button._base_color , base)
+        self.assertEqual(button._hovering_color , hover)
+        self.assertEqual(button._text_input , text)
+        self.assertEqual(str(button._text), str(font.render(button._text_input, True, button._base_color)))
+        self.assertEqual(button._rect , image.get_rect(center=coords))
+        self.assertEqual(button._text_rect , font.render(text, True, base).get_rect(center=coords))
+
     
-#     @given(
-#         image=st.none() | st.builds(pygame.Surface),
-#         pos=st.tuples(st.integers(), st.integers()),
-#         text_input=st.text(),
-#         font=st.just(pygame.font.Font("assets/font.ttf", 8)),
-#         base_color=st.text(),
-#         hovering_color=st.text()
-#     )
-#     @patch("pygame.Surface.get_rect")
-#     @patch("pygame.font.Font.render")
-#     @patch("pygame.Surface.blit")
-#     def test_update(self, mock_blit, mock_render, mock_get_rect, image, pos, text_input, font, base_color, hovering_color):
-#         pass
-#         # button = Button(image, pos, text_input, font, base_color, hovering_color)
-#         # screen = mock.MagicMock()
-#         # button.update(screen)
-#         # if image:
-#         #     mock_blit.assert_called_once_with(image, mock_get_rect.return_value)
-#         # mock_blit.assert_called_with(mock_render.return_value, mock_render.return_value.get_rect.return_value)
-#         # mock_render.assert_called_once_with(text_input, True, base_color)
-#         # mock_get_rect.assert_called_once_with(center=pos)
+    @given(coords=st.tuples(st.integers(min_value=0, max_value=900), st.integers(min_value=0, max_value=900)), 
+        text = st.text(alphabet=string.ascii_letters, max_size=10), 
+        base=sampled_from(["Green", "Black"]), 
+        hover=sampled_from(["Green", "Black"]))
+    def test_update(self, coords:Tuple[int,int], text:str, base:str, hover:str):
+        pygame.init()
+        image = pygame.Surface((50,50))
+        pos = coords
+        font = pygame.font.Font("assets/font.ttf", 10)
+        base_color = base
+        hovering_color = hover
+        button = Button(image, pos, text, font, base_color, hovering_color)
 
-#     # @given(
-#     #     position=st.tuples(st.integers(), st.integers())
-#     # )
-#     # def test_checkForInput(self, position):
-#     #     button = Button(None, (0, 0), "", None, "", "")
-#     #     button._rect = mock.MagicMock(left=0, right=10, top=0, bottom=10)
-#     #     self.assertTrue(button.checkForInput(position))
-#     #     button._rect = mock.MagicMock(left=5, right=15, top=5, bottom=15)
-#     #     self.assertFalse(button.checkForInput(position))
+        # mock display
+        screen = Mock(spec=pygame.Surface)
+        screen.get_at.return_value = pygame.Color(base_color)
 
-#     # @given(
-#     #     position=st.tuples(st.integers(), st.integers())
-#     # )
-#     # def test_changeColor(self, position):
-#     #     button = Button(None, (0, 0), "", None, "", "")
-#     #     button._rect = mock.MagicMock(left=0, right=10, top=0, bottom=10)
-#     #     button.changeColor(position)
-#     #     if position[0] in range(button._rect.left, button._rect.right) and position[1] in range(button._rect.top, button._rect.bottom):
-#     #         button._font.render.assert_called_once_with(button._text_input, True, button._hovering_color)
-#     #     else:
-#     #         button._font.render.assert_called_once_with(button._text_input, True, button._base_color)
+        # ensure screen was updated w/ blit
+        button.update(screen)
+        screen.blit.assert_any_call(image, button._rect)
+        screen.blit.assert_any_call(button._text, button._text_rect)
 
-# if __name__ == '__main__':
-#     unittest.main()
+    def test_checkForInput(self):
+        # Initialize a Button object with arbitrary values
+        button = Button(
+            image=pygame.Surface((50, 50)),
+            pos=(100, 100),
+            text_input="Click Me!",
+            font=pygame.font.Font(None, 20),
+            base_color="blue",
+            hovering_color="red"
+        )
+
+        self.assertTrue(button.checkForInput((100, 100))) #if clicked
+        self.assertFalse(button.checkForInput((50, 50))) #if not clicked 
+
+    @given(base = st.tuples(st.integers(min_value=150), st.integers(min_value=150)), hover = st.tuples(st.integers(min_value=100, max_value=150), st.integers(min_value=100, max_value=150)))
+    def test_changeColor(self, base, hover):
+        image = pygame.Surface((50,50))
+        pos = (100, 100)
+        text_input = "Test"
+        font = pygame.font.Font("assets/font.ttf", 10)
+        base_color = "blue"
+        hovering_color = "red"
+        
+        button = Button(image, pos, text_input, font, base_color, hovering_color)
+
+        # test base color
+        button.changeColor(base)
+        self.assertEqual(str(button._text), str(button._font.render(button._text_input, True, button._base_color)))
+
+        # test hover color
+        button.changeColor(hover)
+        self.assertEqual(str(button._text), str(button._font.render(button._text_input, True, button._hovering_color)))

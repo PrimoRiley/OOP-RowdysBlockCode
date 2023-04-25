@@ -56,7 +56,9 @@ class Rowdy(object):
             self._facing = "s"
             self._image = pygame.transform.rotate(self._image, 90)
 
-    def wallCollide(self, walls:List[pygame.Rect]) -> bool:
+    def noWallCollide(self, walls:List[pygame.Rect]) -> bool:
+        if len(walls) == 0:
+            return True
         for wall in walls:
             if self._facing == "n":
                 if wall.collidepoint(self._coords[0], self._coords[1]-50):
@@ -70,7 +72,7 @@ class Rowdy(object):
             if self._facing == "w":
                 if wall.collidepoint(self._coords[0]-50, self._coords[1]):
                     return False
-        return True
+        
     
     def foodCollide(self, foods:List[Food]) -> None:
          for food in foods:
@@ -105,4 +107,5 @@ class Rowdy(object):
                 if wall.collidepoint(self._coords[0], self._coords[1]-50):
                     return True
         return False
+
 
