@@ -65,32 +65,33 @@ class Rowdy(object):
     def wallCollide(self, walls):
         for wall in walls:
             if self._facing == "n":
-                if wall.collidepoint(self._coords[0], self._coords[1]-50):
+                if wall.hitbox.colliderect(pygame.Rect((self._coords[0],self._coords[1]-60), (40, 40))):
                     return False
             if self._facing == "e":
-                if wall.collidepoint(self._coords[0]+50, self._coords[1]):
+                if wall.hitbox.colliderect(pygame.Rect((self._coords[0]+60,self._coords[1]), (40, 40))):
                     return False
             if self._facing == "s":
-                if wall.collidepoint(self._coords[0], self._coords[1]+50):
+                if wall.hitbox.colliderect(pygame.Rect((self._coords[0],self._coords[1]+60), (40, 40))):
                     return False
             if self._facing == "w":
-                if wall.collidepoint(self._coords[0]-50, self._coords[1]):
+                if wall.hitbox.colliderect(pygame.Rect((self._coords[0]-60,self._coords[1]), (40, 40))):
                     return False
         return True
     
     def foodCollide(self, foods):
          for food in foods:
+            #print(f"{food.hitbox}, Rowdy x:{self._coords[0]},y:{self._coords[1]}")
             if self._facing == "n":
-                if food.hitbox.collidepoint(self._coords[0], self._coords[1]-50):
+                if food.hitbox.colliderect(pygame.Rect((self._coords[0],self._coords[1]-60), (45, 45))):
                     food.blank()
             if self._facing == "e":
-                if food.hitbox.collidepoint(self._coords[0]+50, self._coords[1]):
+                if food.hitbox.colliderect(pygame.Rect((self._coords[0]+60,self._coords[1]), (45, 45))):
                     food.blank()
             if self._facing == "s":
-                if food.hitbox.collidepoint(self._coords[0], self._coords[1]+50):
+                if food.hitbox.colliderect(pygame.Rect((self._coords[0],self._coords[1]+60), (45, 45))):
                     food.blank()
             if self._facing == "w":
-                if food.hitbox.collidepoint(self._coords[0]-50, self._coords[1]):
+                if food.hitbox.colliderect(pygame.Rect((self._coords[0]-60,self._coords[1]), (45, 45))):
                     food.blank()
 
     def wallOnRight(self, walls):
@@ -99,16 +100,16 @@ class Rowdy(object):
         """
         for wall in walls:
             if self._facing == "n":
-                if wall.collidepoint(self._coords[0]+50, self._coords[1]):
+                if wall.hitbox.colliderect(pygame.Rect((self._coords[0]+60,self._coords[1]), (40, 40))):
                     return True
             if self._facing == "e":
-                if wall.collidepoint(self._coords[0], self._coords[1]+50):
+                if wall.hitbox.colliderect(pygame.Rect((self._coords[0],self._coords[1]+60), (40, 40))):
                     return True
             if self._facing == "s":
-                if wall.collidepoint(self._coords[0]-50, self._coords[1]):
+                if wall.hitbox.colliderect(pygame.Rect((self._coords[0]-60,self._coords[1]), (40, 40))):
                     return True
             if self._facing == "w":
-                if wall.collidepoint(self._coords[0], self._coords[1]-50):
+                if wall.hitbox.colliderect(pygame.Rect((self._coords[0],self._coords[1]-60), (40, 40))):
                     return True
         return False
 

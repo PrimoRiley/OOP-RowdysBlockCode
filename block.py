@@ -3,8 +3,8 @@ import os
 
 blank = pygame.image.load(os.path.join('Assets', 'blank.png'))
 light_green = pygame.image.load(os.path.join('Assets', 'move_arrow.png'))
-light_blue = pygame.image.load(os.path.join('Assets', 'turnRight.png'))
-plum = pygame.image.load(os.path.join('Assets', 'turnLeft.png'))
+light_blue = pygame.image.load(os.path.join('Assets', 'turnRight2.png'))
+plum = pygame.image.load(os.path.join('Assets', 'turnLeft2.png'))
 
 class Block(pygame.Rect):
     
