@@ -255,7 +255,7 @@ def play():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     rowdy_class.foodCollide(Foods)
-                    if rowdy_class.wallCollide(walls):
+                    if rowdy_class.noWallCollide(walls):
                         rowdy_class.move()
 
             if event.type == pygame.KEYDOWN:
@@ -295,7 +295,7 @@ def play():
                 process_blocks = False
             elif block_string[block_index] == "m":
                 rowdy_class.foodCollide(Foods)
-                if rowdy_class.wallCollide(walls):
+                if rowdy_class.noWallCollide(walls):
                     rowdy_class.move()
             elif block_string[block_index] == "r":
                 rowdy_class.turn_right()
@@ -309,7 +309,7 @@ def play():
         if solve_maze and not allFoodEaten(Foods):   
             # Maze solving code
             if rowdy_class.wallOnRight(walls):
-                if rowdy_class.wallCollide(walls):
+                if rowdy_class.noWallCollide(walls):
                     rowdy_class.foodCollide(Foods)
                     rowdy_class.move()
                 else:
