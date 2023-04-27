@@ -255,7 +255,7 @@ def play():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     rowdy_class.foodCollide(Foods)
-                    if rowdy_class.noWallCollide(walls):
+                    if rowdy_class.wallCollide(walls):
                         rowdy_class.move()
 
             if event.type == pygame.KEYDOWN:
@@ -295,7 +295,7 @@ def play():
                 process_blocks = False
             elif block_string[block_index] == "m":
                 rowdy_class.foodCollide(Foods)
-                if rowdy_class.noWallCollide(walls):
+                if rowdy_class.wallCollide(walls):
                     rowdy_class.move()
             elif block_string[block_index] == "r":
                 rowdy_class.turn_right()
@@ -309,7 +309,7 @@ def play():
         if solve_maze and not allFoodEaten(Foods):   
             # Maze solving code
             if rowdy_class.wallOnRight(walls):
-                if rowdy_class.noWallCollide(walls):
+                if rowdy_class.wallCollide(walls):
                     rowdy_class.foodCollide(Foods)
                     rowdy_class.move()
                 else:
@@ -408,8 +408,6 @@ def settings():
             SCREEN.blit(ROWDY_SELECTED, (575, 146))
             PLAYER_IMAGE = img
         
-        
-        
 
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
@@ -427,7 +425,6 @@ def settings():
         
         ROWDY = Button(image=None, pos=(595, 190),
                             text_input="   ", font=get_Roboto(80), base_color="Black", hovering_color="White", hovering_image=HIGHLIGHT)
-        
         
 
         for button in [HELP_BACK, DORA, STEVE, TWEETY, ROWDY]:
