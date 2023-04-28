@@ -2,10 +2,21 @@ import unittest
 import pygame
 from rowdy import Rowdy
 from food import Food
+from wall import Wall
+import os
 
 class TestRowdy(unittest.TestCase):
     def setUp(self):
         pygame.init()
+        self.blank = pygame.image.load(os.path.join('Assets', 'blank.png'))
+        top_border = Wall([0,0], size = (900,50), img=self.blank)
+        left_border = Wall([0,0], size = (150,500), img=self.blank)
+        right_border = Wall([713,0], size = (750,500), img=self.blank)
+        bottom_border_top = Wall([0,350], size = (900,50), img=self.blank)
+        bottom_border_bottom = Wall([0,340], size = (900,50), img=self.blank)
+        side_bar_left = Wall([150,400], size = (100,100), img=self.blank)
+        side_bar_right = Wall([650,400], size = (100,100), img=self.blank)
+        self.walls = [top_border, left_border, right_border, bottom_border_top, bottom_border_bottom, side_bar_left, side_bar_right]
 
     def tearDown(self):
         pygame.quit()
@@ -89,27 +100,23 @@ class TestRowdy(unittest.TestCase):
 
     def test_wallCollide_wall_on_north(self):
         rowdy = Rowdy([0, 0])
-        walls = [pygame.Rect(0, -58.75, 50, 50)]
         rowdy._facing = "n"
-        self.assertFalse(rowdy.noWallCollide(walls))
+        self.assertTrue(rowdy.noWallCollide(self.walls))
 
     def test_wallCollide_wall_on_east(self):
         rowdy = Rowdy([0, 0])
-        walls = [pygame.Rect(58.75, 0, 50, 50)]
         rowdy._facing = "e"
-        self.assertFalse(rowdy.noWallCollide(walls))
+        self.assertFalse(rowdy.noWallCollide(self.walls))
 
     def test_wallCollide_wall_on_south(self):
         rowdy = Rowdy([0, 0])
-        walls = [pygame.Rect(0, 58.75, 50, 50)]
         rowdy._facing = "s"
-        self.assertFalse(rowdy.noWallCollide(walls))
+        self.assertFalse(rowdy.noWallCollide(self.walls))
 
     def test_wallCollide_wall_on_west(self):
         rowdy = Rowdy([0, 0])
-        walls = [pygame.Rect(-58.75, 0, 50, 50)]
         rowdy._facing = "w"
-        self.assertFalse(rowdy.noWallCollide(walls))
+        self.assertTrue(rowdy.noWallCollide(self.walls))
 
     def test_foodCollide_no_foods(self):
         rowdy = Rowdy([0, 0])
@@ -144,4 +151,42 @@ class TestRowdy(unittest.TestCase):
         rowdy.foodCollide(foods)
         self.assertEqual(foods[0]._hitbox, pygame.Rect(0, -58.75, 50, 50))
 
+    def test_wallOnRight_north(self):
+        rowdy = Rowdy([0,0])  # Create an instance of YourClass for testing
+        rowdy._facing = "n"  # Set rowdy's facing direction to north for testing
+        walls = []
+
+        walls.append(Wall([0,50], img=self.blank))
+
+        # Check if wallOnRight returns True for the wall to the right of rowdy
+        self.assertTrue(rowdy.wallOnRight(self.walls))
     
+    def test_wallOnRight_east(self):
+        rowdy = Rowdy([0,0])  # Create an instance of YourClass for testing
+        rowdy._facing = "e"  # Set rowdy's facing direction to north for testing
+        walls = []
+
+        walls.append(Wall([50,0], img=self.blank))
+
+        # Check if wallOnRight returns True for the wall to the right of rowdy
+        self.assertTrue(rowdy.wallOnRight(self.walls))
+
+    # def test_wallOnRight_south(self):
+    #     rowdy = Rowdy([0,0])  # Create an instance of YourClass for testing
+    #     rowdy._facing = "s"  # Set rowdy's facing direction to north for testing
+    #     walls = []
+
+    #     walls.append(Wall([-65,0], img=self.blank))
+
+    #     # Check if wallOnRight returns True for the wall to the right of rowdy
+    #     self.assertTrue(rowdy.wallOnRight(self.walls))
+
+    # def test_wallOnRight_west(self):
+    #     rowdy = Rowdy([0,0])  # Create an instance of YourClass for testing
+    #     rowdy._facing = "w"  # Set rowdy's facing direction to north for testing
+    #     walls = []
+
+    #     walls.append(Wall([0,-65], img=self.blank))
+
+    #     # Check if wallOnRight returns True for the wall to the right of rowdy
+    #     self.assertTrue(rowdy.wallOnRight(self.walls))

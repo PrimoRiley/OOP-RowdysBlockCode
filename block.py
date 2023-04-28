@@ -9,6 +9,16 @@ plum = pygame.image.load(os.path.join('Assets', 'turnLeft2.png'))
 
 class Block(pygame.Rect):
     def __init__(self,coords:Tuple[int, int], color:str, left:int, top:int, width:int, height:int) -> None:
+        """Block constructor, decorates pygame.Rect object
+
+        Args:
+            coords (Tuple[int, int]): x and y coordinates
+            color (str): color name
+            left (int): x coordinate of left edge
+            top (int): y coordinate of top edge
+            width (int): rectangle width
+            height (int): rectangle height
+        """        
         
         self.blank = pygame.image.load(os.path.join('Assets', 'blank.png'))
         self.light_green = pygame.image.load(os.path.join('Assets', 'move_arrow.png'))
@@ -23,26 +33,56 @@ class Block(pygame.Rect):
 
     @property
     def coords(self) -> Tuple[int, int]:
+        """Coordinate getter function
+
+        Returns:
+            Tuple[int, int]: coordinates
+        """        
         return self._coords
 
     @coords.setter
     def coords(self, value:Tuple[int, int]) -> None:
+        """Coordinate setter function
+
+        Args:
+            value (Tuple[int, int]): new coordinates
+        """        
         self._coords = value
 
     @property
     def color(self) -> str:
+        """Color getter function
+
+        Returns:
+            str: color name
+        """        
         return self._color
 
     @color.setter
     def color(self, value:str) -> None:
+        """Color setter function
+
+        Args:
+            value (str): new color name 
+        """        
         self._color = value
 
     @property
     def img(self) -> pygame.Surface:
+        """Image getter function
+
+        Returns:
+            pygame.Surface: current surface object 
+        """        
         return self._img
 
     @img.setter
     def img(self, value:pygame.Surface) -> None:
+        """Image setter 
+
+        Args:
+            value (pygame.Surface): new surface object
+        """        
         self._img = value
 
 

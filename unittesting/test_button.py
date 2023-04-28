@@ -24,16 +24,16 @@ class TestButton(unittest.TestCase):
 
         button = Button(image, pos, text_input, font, base_color, hovering_color)
 
-        self.assertEqual(button._image , image)
-        self.assertEqual(button._x_pos , coords[0])
-        self.assertEqual(button._y_pos , coords[1])
-        self.assertEqual(button._font , font)
-        self.assertEqual(button._base_color , base)
-        self.assertEqual(button._hovering_color , hover)
-        self.assertEqual(button._text_input , text)
-        self.assertEqual(str(button._text), str(font.render(button._text_input, True, button._base_color)))
-        self.assertEqual(button._rect , image.get_rect(center=coords))
-        self.assertEqual(button._text_rect , font.render(text, True, base).get_rect(center=coords))
+        self.assertEqual(button.image , image)
+        self.assertEqual(button.x_pos , coords[0])
+        self.assertEqual(button.y_pos , coords[1])
+        self.assertEqual(button.font , font)
+        self.assertEqual(button.base_color , base)
+        self.assertEqual(button.hovering_color , hover)
+        self.assertEqual(button.text_input , text)
+        self.assertEqual(str(button.text), str(font.render(button.text_input, True, button.base_color)))
+        self.assertEqual(button.rect , image.get_rect(center=coords))
+        self.assertEqual(button.text_rect , font.render(text, True, base).get_rect(center=coords))
 
     
     @given(coords=st.tuples(st.integers(min_value=0, max_value=900), st.integers(min_value=0, max_value=900)), 
@@ -55,8 +55,8 @@ class TestButton(unittest.TestCase):
 
         # ensure screen was updated w/ blit
         button.update(screen)
-        screen.blit.assert_any_call(image, button._rect)
-        screen.blit.assert_any_call(button._text, button._text_rect)
+        screen.blit.assert_any_call(image, button.rect)
+        screen.blit.assert_any_call(button.text, button.text_rect)
 
     def test_checkForInput(self):
         # Initialize a Button object with arbitrary values
@@ -85,8 +85,8 @@ class TestButton(unittest.TestCase):
 
         # test base color
         button.changeColor(base)
-        self.assertEqual(str(button._text), str(button._font.render(button._text_input, True, button._base_color)))
+        self.assertEqual(str(button.text), str(button.font.render(button.text_input, True, button.base_color)))
 
         # test hover color
         button.changeColor(hover)
-        self.assertEqual(str(button._text), str(button._font.render(button._text_input, True, button._hovering_color)))
+        self.assertEqual(str(button.text), str(button.font.render(button.text_input, True, button.hovering_color)))

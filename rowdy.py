@@ -1,12 +1,14 @@
 import pygame
 import os
 from food import Food
+from wall import Wall
+from typing import List, Tuple
 
 img = pygame.image.load(os.path.join('Assets', 'MiniRowdy_40.png'))
 
 
 class Rowdy(object):
-    def __init__(self, coords):
+    def __init__(self, coords: List[int]) -> None:
         """
         Constructor
         """
@@ -15,7 +17,15 @@ class Rowdy(object):
         self._hitbox = pygame.Rect(coords, (50, 50))
         self._image = pygame.transform.rotate(img, 0)
 
-    def move(self):
+    @property
+    def image(self) -> pygame.Surface:
+        return self._image
+        
+    @image.setter
+    def image(self, value:pygame.Surface) -> None:
+        self._image = value
+
+    def move(self) -> None:
         """
         Moves rowdy 1 space in the direction he is facing
         """
@@ -28,7 +38,7 @@ class Rowdy(object):
         elif self._facing == "w":
             self._coords[0] -= 58.75
 
-    def turn_right(self):
+    def turn_right(self) -> None:
         """
         Rotates rowdy clokwise 90 degrees in place
         """
@@ -45,7 +55,7 @@ class Rowdy(object):
             self._facing = "n"
             self._image = pygame.transform.rotate(self._image, -90)
 
-    def turn_left(self):
+    def turn_left(self) -> None:
         """
         Rotates rowdy counterclokwise 90 degrees in place
         """
@@ -62,7 +72,15 @@ class Rowdy(object):
             self._facing = "s"
             self._image = pygame.transform.rotate(self._image, 90)
 
-    def wallCollide(self, walls):
+    def noWallCollide(self, walls:List[Wall]) -> bool:
+        """Determines if Rowdy won't collide with a wall
+
+        Args:
+            walls (List[Wall]): wall objects 
+
+        Returns:
+            bool: True if Rowdy won't collide with a wall, otherwise False
+        """        
         for wall in walls:
             if self._facing == "n":
                 if wall.hitbox.colliderect(pygame.Rect((self._coords[0],self._coords[1]-60), (40, 40))):
@@ -78,8 +96,13 @@ class Rowdy(object):
                     return False
         return True
     
-    def foodCollide(self, foods):
-         for food in foods:
+    def foodCollide(self, foods:List[Food]) -> None:
+        """Fyntion to change food when rowdy colides 
+
+        Args:
+            foods (List[Food]): List of food objects
+        """         
+        for food in foods:
             #print(f"{food.hitbox}, Rowdy x:{self._coords[0]},y:{self._coords[1]}")
             if self._facing == "n":
                 if food.hitbox.colliderect(pygame.Rect((self._coords[0],self._coords[1]-60), (45, 45))):
@@ -94,10 +117,15 @@ class Rowdy(object):
                 if food.hitbox.colliderect(pygame.Rect((self._coords[0]-60,self._coords[1]), (45, 45))):
                     food.blank()
 
-    def wallOnRight(self, walls):
-        """
-        Return True if wall on right of rowdy
-        """
+    def wallOnRight(self, walls:List[Wall]) -> bool:
+        """Determines if there is a wall on the right side of rowdy
+
+        Args:
+            walls (List[Wall]): list of wall objects
+
+        Returns:
+            bool: True if there is a wall on the right side of rowdy, otherwise False
+        """        
         for wall in walls:
             if self._facing == "n":
                 if wall.hitbox.colliderect(pygame.Rect((self._coords[0]+60,self._coords[1]), (40, 40))):

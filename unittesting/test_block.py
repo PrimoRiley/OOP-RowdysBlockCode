@@ -25,12 +25,12 @@ class TestBlock(unittest.TestCase):
         self.block.color = "light blue"
         self.block._setImage()
         self.assertEqual(self.block.color, "light blue")
-        self.assertEqual(str(self.block.img), str(pygame.image.load(os.path.join('Assets', 'turnRight.png'))))
+        self.assertEqual(str(self.block.img), str(pygame.image.load(os.path.join('Assets', 'turnRight2.png'))))
         
         self.block.color = "plum"
         self.block._setImage()
         self.assertEqual(self.block.color, "plum")
-        self.assertEqual(str(self.block.img), str(pygame.image.load(os.path.join('Assets', 'turnLeft.png'))))
+        self.assertEqual(str(self.block.img), str(pygame.image.load(os.path.join('Assets', 'turnLeft2.png'))))
         
         self.block.color = "not a color"
         self.block._setImage()
