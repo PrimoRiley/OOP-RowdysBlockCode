@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module rowdy</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>rowdy</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/mnt/c/Users/prime/OneDrive/Documents/CMU/ObjectOrientedProgramming-CSCI375/OOP-RowdysBlockCode/rowdy.py">/mnt/c/Users/prime/OneDrive/Documents/CMU/ObjectOrientedProgramming-CSCI375/OOP-RowdysBlockCode/rowdy.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pygame.html">pygame</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="rowdy.html#Rowdy">Rowdy</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Rowdy">class <strong>Rowdy</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Rowdy">Rowdy</a>(coords:&nbsp;List[int])&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Rowdy-__init__"><strong>__init__</strong></a>(self, coords: List[int]) -&gt; None</dt><dd><tt>Constructor</tt></dd></dl>
+
+<dl><dt><a name="Rowdy-foodCollide"><strong>foodCollide</strong></a>(self, foods: List[food.Food]) -&gt; None</dt><dd><tt>Fyntion&nbsp;to&nbsp;change&nbsp;food&nbsp;when&nbsp;rowdy&nbsp;colides&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;foods&nbsp;(List[Food]):&nbsp;List&nbsp;of&nbsp;food&nbsp;objects</tt></dd></dl>
+
+<dl><dt><a name="Rowdy-move"><strong>move</strong></a>(self) -&gt; None</dt><dd><tt>Moves&nbsp;rowdy&nbsp;1&nbsp;space&nbsp;in&nbsp;the&nbsp;direction&nbsp;he&nbsp;is&nbsp;facing</tt></dd></dl>
+
+<dl><dt><a name="Rowdy-noWallCollide"><strong>noWallCollide</strong></a>(self, walls: List[wall.Wall]) -&gt; bool</dt><dd><tt>Determines&nbsp;if&nbsp;<a href="#Rowdy">Rowdy</a>&nbsp;won't&nbsp;collide&nbsp;with&nbsp;a&nbsp;wall<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;walls&nbsp;(List[Wall]):&nbsp;wall&nbsp;objects&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;True&nbsp;if&nbsp;<a href="#Rowdy">Rowdy</a>&nbsp;won't&nbsp;collide&nbsp;with&nbsp;a&nbsp;wall,&nbsp;otherwise&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="Rowdy-turn_left"><strong>turn_left</strong></a>(self) -&gt; None</dt><dd><tt>Rotates&nbsp;rowdy&nbsp;counterclokwise&nbsp;90&nbsp;degrees&nbsp;in&nbsp;place</tt></dd></dl>
+
+<dl><dt><a name="Rowdy-turn_right"><strong>turn_right</strong></a>(self) -&gt; None</dt><dd><tt>Rotates&nbsp;rowdy&nbsp;clokwise&nbsp;90&nbsp;degrees&nbsp;in&nbsp;place</tt></dd></dl>
+
+<dl><dt><a name="Rowdy-wallOnRight"><strong>wallOnRight</strong></a>(self, walls: List[wall.Wall]) -&gt; bool</dt><dd><tt>Determines&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;wall&nbsp;on&nbsp;the&nbsp;right&nbsp;side&nbsp;of&nbsp;rowdy<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;walls&nbsp;(List[Wall]):&nbsp;list&nbsp;of&nbsp;wall&nbsp;objects<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;True&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;wall&nbsp;on&nbsp;the&nbsp;right&nbsp;side&nbsp;of&nbsp;rowdy,&nbsp;otherwise&nbsp;False</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>image</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>List</strong> = typing.List<br>
+<strong>Tuple</strong> = typing.Tuple<br>
+<strong>img</strong> = &lt;Surface(40x40x32 SW)&gt;</td></tr></table>
+</body></html>

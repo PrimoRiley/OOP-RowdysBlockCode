@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module block</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>block</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/mnt/c/Users/prime/OneDrive/Documents/CMU/ObjectOrientedProgramming-CSCI375/OOP-RowdysBlockCode/block.py">/mnt/c/Users/prime/OneDrive/Documents/CMU/ObjectOrientedProgramming-CSCI375/OOP-RowdysBlockCode/block.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pygame.html">pygame</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="pygame.rect.html#Rect">pygame.rect.Rect</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="block.html#Block">Block</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Block">class <strong>Block</strong></a>(<a href="pygame.rect.html#Rect">pygame.rect.Rect</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Block">Block</a>(coords:&nbsp;Tuple[int,&nbsp;int],&nbsp;color:&nbsp;str,&nbsp;left:&nbsp;int,&nbsp;top:&nbsp;int,&nbsp;width:&nbsp;int,&nbsp;height:&nbsp;int)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="block.html#Block">Block</a></dd>
+<dd><a href="pygame.rect.html#Rect">pygame.rect.Rect</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Block-__init__"><strong>__init__</strong></a>(self, coords: Tuple[int, int], color: str, left: int, top: int, width: int, height: int) -&gt; None</dt><dd><tt><a href="#Block">Block</a>&nbsp;constructor,&nbsp;decorates&nbsp;pygame.<a href="pygame.rect.html#Rect">Rect</a>&nbsp;object<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coords&nbsp;(Tuple[int,&nbsp;int]):&nbsp;x&nbsp;and&nbsp;y&nbsp;coordinates<br>
+&nbsp;&nbsp;&nbsp;&nbsp;color&nbsp;(str):&nbsp;color&nbsp;name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;left&nbsp;(int):&nbsp;x&nbsp;coordinate&nbsp;of&nbsp;left&nbsp;edge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;top&nbsp;(int):&nbsp;y&nbsp;coordinate&nbsp;of&nbsp;top&nbsp;edge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;width&nbsp;(int):&nbsp;rectangle&nbsp;width<br>
+&nbsp;&nbsp;&nbsp;&nbsp;height&nbsp;(int):&nbsp;rectangle&nbsp;height</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>color</strong></dt>
+<dd><tt>Color&nbsp;getter&nbsp;function<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;color&nbsp;name</tt></dd>
+</dl>
+<dl><dt><strong>coords</strong></dt>
+<dd><tt>Coordinate&nbsp;getter&nbsp;function<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Tuple[int,&nbsp;int]:&nbsp;coordinates</tt></dd>
+</dl>
+<dl><dt><strong>img</strong></dt>
+<dd><tt>Image&nbsp;getter&nbsp;function<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pygame.Surface:&nbsp;current&nbsp;surface&nbsp;object</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="pygame.rect.html#Rect">pygame.rect.Rect</a>:<br>
+<dl><dt><a name="Block-__bool__"><strong>__bool__</strong></a>(self, /)</dt><dd><tt>True&nbsp;if&nbsp;self&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="Block-__contains__"><strong>__contains__</strong></a>(self, key, /)</dt><dd><tt>Return&nbsp;key&nbsp;in&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="Block-__copy__"><strong>__copy__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Block-__delitem__"><strong>__delitem__</strong></a>(self, key, /)</dt><dd><tt>Delete&nbsp;self[key].</tt></dd></dl>
+
+<dl><dt><a name="Block-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="Block-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Block-__getitem__"><strong>__getitem__</strong></a>(self, key, /)</dt><dd><tt>Return&nbsp;self[key].</tt></dd></dl>
+
+<dl><dt><a name="Block-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="Block-__iter__"><strong>__iter__</strong></a>(self, /)</dt><dd><tt>Implement&nbsp;iter(self).</tt></dd></dl>
+
+<dl><dt><a name="Block-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Block-__len__"><strong>__len__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;len(self).</tt></dd></dl>
+
+<dl><dt><a name="Block-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="Block-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="Block-__reduce__"><strong>__reduce__</strong></a>(...)</dt><dd><tt>Helper&nbsp;for&nbsp;pickle.</tt></dd></dl>
+
+<dl><dt><a name="Block-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Block-__setitem__"><strong>__setitem__</strong></a>(self, key, value, /)</dt><dd><tt>Set&nbsp;self[key]&nbsp;to&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="Block-__str__"><strong>__str__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="Block-clamp"><strong>clamp</strong></a>(...)</dt><dd><tt><a href="#Block-clamp">clamp</a>(<a href="pygame.rect.html#Rect">Rect</a>)&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+moves&nbsp;the&nbsp;rectangle&nbsp;inside&nbsp;another</tt></dd></dl>
+
+<dl><dt><a name="Block-clamp_ip"><strong>clamp_ip</strong></a>(...)</dt><dd><tt><a href="#Block-clamp_ip">clamp_ip</a>(<a href="pygame.rect.html#Rect">Rect</a>)&nbsp;-&gt;&nbsp;None<br>
+moves&nbsp;the&nbsp;rectangle&nbsp;inside&nbsp;another,&nbsp;in&nbsp;place</tt></dd></dl>
+
+<dl><dt><a name="Block-clip"><strong>clip</strong></a>(...)</dt><dd><tt><a href="#Block-clip">clip</a>(<a href="pygame.rect.html#Rect">Rect</a>)&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+crops&nbsp;a&nbsp;rectangle&nbsp;inside&nbsp;another</tt></dd></dl>
+
+<dl><dt><a name="Block-clipline"><strong>clipline</strong></a>(...)</dt><dd><tt><a href="#Block-clipline">clipline</a>(x1,&nbsp;y1,&nbsp;x2,&nbsp;y2)&nbsp;-&gt;&nbsp;((cx1,&nbsp;cy1),&nbsp;(cx2,&nbsp;cy2))<br>
+<a href="#Block-clipline">clipline</a>(x1,&nbsp;y1,&nbsp;x2,&nbsp;y2)&nbsp;-&gt;&nbsp;()<br>
+<a href="#Block-clipline">clipline</a>((x1,&nbsp;y1),&nbsp;(x2,&nbsp;y2))&nbsp;-&gt;&nbsp;((cx1,&nbsp;cy1),&nbsp;(cx2,&nbsp;cy2))<br>
+<a href="#Block-clipline">clipline</a>((x1,&nbsp;y1),&nbsp;(x2,&nbsp;y2))&nbsp;-&gt;&nbsp;()<br>
+<a href="#Block-clipline">clipline</a>((x1,&nbsp;y1,&nbsp;x2,&nbsp;y2))&nbsp;-&gt;&nbsp;((cx1,&nbsp;cy1),&nbsp;(cx2,&nbsp;cy2))<br>
+<a href="#Block-clipline">clipline</a>((x1,&nbsp;y1,&nbsp;x2,&nbsp;y2))&nbsp;-&gt;&nbsp;()<br>
+<a href="#Block-clipline">clipline</a>(((x1,&nbsp;y1),&nbsp;(x2,&nbsp;y2)))&nbsp;-&gt;&nbsp;((cx1,&nbsp;cy1),&nbsp;(cx2,&nbsp;cy2))<br>
+<a href="#Block-clipline">clipline</a>(((x1,&nbsp;y1),&nbsp;(x2,&nbsp;y2)))&nbsp;-&gt;&nbsp;()<br>
+crops&nbsp;a&nbsp;line&nbsp;inside&nbsp;a&nbsp;rectangle</tt></dd></dl>
+
+<dl><dt><a name="Block-collidedict"><strong>collidedict</strong></a>(...)</dt><dd><tt><a href="#Block-collidedict">collidedict</a>(dict)&nbsp;-&gt;&nbsp;(key,&nbsp;value)<br>
+<a href="#Block-collidedict">collidedict</a>(dict)&nbsp;-&gt;&nbsp;None<br>
+<a href="#Block-collidedict">collidedict</a>(dict,&nbsp;use_values=0)&nbsp;-&gt;&nbsp;(key,&nbsp;value)<br>
+<a href="#Block-collidedict">collidedict</a>(dict,&nbsp;use_values=0)&nbsp;-&gt;&nbsp;None<br>
+test&nbsp;if&nbsp;one&nbsp;rectangle&nbsp;in&nbsp;a&nbsp;dictionary&nbsp;intersects</tt></dd></dl>
+
+<dl><dt><a name="Block-collidedictall"><strong>collidedictall</strong></a>(...)</dt><dd><tt><a href="#Block-collidedictall">collidedictall</a>(dict)&nbsp;-&gt;&nbsp;[(key,&nbsp;value),&nbsp;...]<br>
+<a href="#Block-collidedictall">collidedictall</a>(dict,&nbsp;use_values=0)&nbsp;-&gt;&nbsp;[(key,&nbsp;value),&nbsp;...]<br>
+test&nbsp;if&nbsp;all&nbsp;rectangles&nbsp;in&nbsp;a&nbsp;dictionary&nbsp;intersect</tt></dd></dl>
+
+<dl><dt><a name="Block-collidelist"><strong>collidelist</strong></a>(...)</dt><dd><tt><a href="#Block-collidelist">collidelist</a>(list)&nbsp;-&gt;&nbsp;index<br>
+test&nbsp;if&nbsp;one&nbsp;rectangle&nbsp;in&nbsp;a&nbsp;list&nbsp;intersects</tt></dd></dl>
+
+<dl><dt><a name="Block-collidelistall"><strong>collidelistall</strong></a>(...)</dt><dd><tt><a href="#Block-collidelistall">collidelistall</a>(list)&nbsp;-&gt;&nbsp;indices<br>
+test&nbsp;if&nbsp;all&nbsp;rectangles&nbsp;in&nbsp;a&nbsp;list&nbsp;intersect</tt></dd></dl>
+
+<dl><dt><a name="Block-collideobjects"><strong>collideobjects</strong></a>(...)</dt><dd><tt><a href="#Block-collideobjects">collideobjects</a>(rect_list)&nbsp;-&gt;&nbsp;object<br>
+<a href="#Block-collideobjects">collideobjects</a>(obj_list,&nbsp;key=func)&nbsp;-&gt;&nbsp;object<br>
+test&nbsp;if&nbsp;any&nbsp;object&nbsp;in&nbsp;a&nbsp;list&nbsp;intersects</tt></dd></dl>
+
+<dl><dt><a name="Block-collideobjectsall"><strong>collideobjectsall</strong></a>(...)</dt><dd><tt><a href="#Block-collideobjectsall">collideobjectsall</a>(rect_list)&nbsp;-&gt;&nbsp;objects<br>
+<a href="#Block-collideobjectsall">collideobjectsall</a>(obj_list,&nbsp;key=func)&nbsp;-&gt;&nbsp;objects<br>
+test&nbsp;if&nbsp;all&nbsp;objects&nbsp;in&nbsp;a&nbsp;list&nbsp;intersect</tt></dd></dl>
+
+<dl><dt><a name="Block-collidepoint"><strong>collidepoint</strong></a>(...)</dt><dd><tt><a href="#Block-collidepoint">collidepoint</a>(x,&nbsp;y)&nbsp;-&gt;&nbsp;bool<br>
+<a href="#Block-collidepoint">collidepoint</a>((x,y))&nbsp;-&gt;&nbsp;bool<br>
+test&nbsp;if&nbsp;a&nbsp;point&nbsp;is&nbsp;inside&nbsp;a&nbsp;rectangle</tt></dd></dl>
+
+<dl><dt><a name="Block-colliderect"><strong>colliderect</strong></a>(...)</dt><dd><tt><a href="#Block-colliderect">colliderect</a>(<a href="pygame.rect.html#Rect">Rect</a>)&nbsp;-&gt;&nbsp;bool<br>
+test&nbsp;if&nbsp;two&nbsp;rectangles&nbsp;overlap</tt></dd></dl>
+
+<dl><dt><a name="Block-contains"><strong>contains</strong></a>(...)</dt><dd><tt><a href="#Block-contains">contains</a>(<a href="pygame.rect.html#Rect">Rect</a>)&nbsp;-&gt;&nbsp;bool<br>
+test&nbsp;if&nbsp;one&nbsp;rectangle&nbsp;is&nbsp;inside&nbsp;another</tt></dd></dl>
+
+<dl><dt><a name="Block-copy"><strong>copy</strong></a>(...)</dt><dd><tt><a href="#Block-copy">copy</a>()&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+copy&nbsp;the&nbsp;rectangle</tt></dd></dl>
+
+<dl><dt><a name="Block-fit"><strong>fit</strong></a>(...)</dt><dd><tt><a href="#Block-fit">fit</a>(<a href="pygame.rect.html#Rect">Rect</a>)&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+resize&nbsp;and&nbsp;move&nbsp;a&nbsp;rectangle&nbsp;with&nbsp;aspect&nbsp;ratio</tt></dd></dl>
+
+<dl><dt><a name="Block-inflate"><strong>inflate</strong></a>(...)</dt><dd><tt><a href="#Block-inflate">inflate</a>(x,&nbsp;y)&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+grow&nbsp;or&nbsp;shrink&nbsp;the&nbsp;rectangle&nbsp;size</tt></dd></dl>
+
+<dl><dt><a name="Block-inflate_ip"><strong>inflate_ip</strong></a>(...)</dt><dd><tt><a href="#Block-inflate_ip">inflate_ip</a>(x,&nbsp;y)&nbsp;-&gt;&nbsp;None<br>
+grow&nbsp;or&nbsp;shrink&nbsp;the&nbsp;rectangle&nbsp;size,&nbsp;in&nbsp;place</tt></dd></dl>
+
+<dl><dt><a name="Block-move"><strong>move</strong></a>(...)</dt><dd><tt><a href="#Block-move">move</a>(x,&nbsp;y)&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+moves&nbsp;the&nbsp;rectangle</tt></dd></dl>
+
+<dl><dt><a name="Block-move_ip"><strong>move_ip</strong></a>(...)</dt><dd><tt><a href="#Block-move_ip">move_ip</a>(x,&nbsp;y)&nbsp;-&gt;&nbsp;None<br>
+moves&nbsp;the&nbsp;rectangle,&nbsp;in&nbsp;place</tt></dd></dl>
+
+<dl><dt><a name="Block-normalize"><strong>normalize</strong></a>(...)</dt><dd><tt><a href="#Block-normalize">normalize</a>()&nbsp;-&gt;&nbsp;None<br>
+correct&nbsp;negative&nbsp;sizes</tt></dd></dl>
+
+<dl><dt><a name="Block-scale_by"><strong>scale_by</strong></a>(...)</dt><dd><tt><a href="#Block-scale_by">scale_by</a>(scalar)&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+<a href="#Block-scale_by">scale_by</a>(scalex,&nbsp;scaley)&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+scale&nbsp;the&nbsp;rectangle&nbsp;by&nbsp;given&nbsp;a&nbsp;multiplier</tt></dd></dl>
+
+<dl><dt><a name="Block-scale_by_ip"><strong>scale_by_ip</strong></a>(...)</dt><dd><tt><a href="#Block-scale_by_ip">scale_by_ip</a>(scalar)&nbsp;-&gt;&nbsp;None<br>
+<a href="#Block-scale_by_ip">scale_by_ip</a>(scalex,&nbsp;scaley)&nbsp;-&gt;&nbsp;None<br>
+grow&nbsp;or&nbsp;shrink&nbsp;the&nbsp;rectangle&nbsp;size,&nbsp;in&nbsp;place</tt></dd></dl>
+
+<dl><dt><a name="Block-union"><strong>union</strong></a>(...)</dt><dd><tt><a href="#Block-union">union</a>(<a href="pygame.rect.html#Rect">Rect</a>)&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+joins&nbsp;two&nbsp;rectangles&nbsp;into&nbsp;one</tt></dd></dl>
+
+<dl><dt><a name="Block-union_ip"><strong>union_ip</strong></a>(...)</dt><dd><tt><a href="#Block-union_ip">union_ip</a>(<a href="pygame.rect.html#Rect">Rect</a>)&nbsp;-&gt;&nbsp;None<br>
+joins&nbsp;two&nbsp;rectangles&nbsp;into&nbsp;one,&nbsp;in&nbsp;place</tt></dd></dl>
+
+<dl><dt><a name="Block-unionall"><strong>unionall</strong></a>(...)</dt><dd><tt><a href="#Block-unionall">unionall</a>(Rect_sequence)&nbsp;-&gt;&nbsp;<a href="pygame.rect.html#Rect">Rect</a><br>
+the&nbsp;union&nbsp;of&nbsp;many&nbsp;rectangles</tt></dd></dl>
+
+<dl><dt><a name="Block-unionall_ip"><strong>unionall_ip</strong></a>(...)</dt><dd><tt><a href="#Block-unionall_ip">unionall_ip</a>(Rect_sequence)&nbsp;-&gt;&nbsp;None<br>
+the&nbsp;union&nbsp;of&nbsp;many&nbsp;rectangles,&nbsp;in&nbsp;place</tt></dd></dl>
+
+<dl><dt><a name="Block-update"><strong>update</strong></a>(...)</dt><dd><tt><a href="#Block-update">update</a>(left,&nbsp;top,&nbsp;width,&nbsp;height)&nbsp;-&gt;&nbsp;None<br>
+<a href="#Block-update">update</a>((left,&nbsp;top),&nbsp;(width,&nbsp;height))&nbsp;-&gt;&nbsp;None<br>
+<a href="#Block-update">update</a>(object)&nbsp;-&gt;&nbsp;None<br>
+sets&nbsp;the&nbsp;position&nbsp;and&nbsp;size&nbsp;of&nbsp;the&nbsp;rectangle</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="pygame.rect.html#Rect">pygame.rect.Rect</a>:<br>
+<dl><dt><a name="Block-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="pygame.rect.html#Rect">pygame.rect.Rect</a>:<br>
+<dl><dt><strong>__safe_for_unpickling__</strong></dt>
+</dl>
+<dl><dt><strong>bottom</strong></dt>
+</dl>
+<dl><dt><strong>bottomleft</strong></dt>
+</dl>
+<dl><dt><strong>bottomright</strong></dt>
+</dl>
+<dl><dt><strong>center</strong></dt>
+</dl>
+<dl><dt><strong>centerx</strong></dt>
+</dl>
+<dl><dt><strong>centery</strong></dt>
+</dl>
+<dl><dt><strong>h</strong></dt>
+</dl>
+<dl><dt><strong>height</strong></dt>
+</dl>
+<dl><dt><strong>left</strong></dt>
+</dl>
+<dl><dt><strong>midbottom</strong></dt>
+</dl>
+<dl><dt><strong>midleft</strong></dt>
+</dl>
+<dl><dt><strong>midright</strong></dt>
+</dl>
+<dl><dt><strong>midtop</strong></dt>
+</dl>
+<dl><dt><strong>right</strong></dt>
+</dl>
+<dl><dt><strong>size</strong></dt>
+</dl>
+<dl><dt><strong>top</strong></dt>
+</dl>
+<dl><dt><strong>topleft</strong></dt>
+</dl>
+<dl><dt><strong>topright</strong></dt>
+</dl>
+<dl><dt><strong>w</strong></dt>
+</dl>
+<dl><dt><strong>width</strong></dt>
+</dl>
+<dl><dt><strong>x</strong></dt>
+</dl>
+<dl><dt><strong>y</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="pygame.rect.html#Rect">pygame.rect.Rect</a>:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Tuple</strong> = typing.Tuple<br>
+<strong>blank</strong> = &lt;Surface(50x50x8 SW)&gt;<br>
+<strong>light_blue</strong> = &lt;Surface(70x70x32 SW)&gt;<br>
+<strong>light_green</strong> = &lt;Surface(70x70x8 SW)&gt;<br>
+<strong>plum</strong> = &lt;Surface(70x70x32 SW)&gt;</td></tr></table>
+</body></html>
