@@ -1,0 +1,8 @@
+@startuml
+scale 2
+title "UML Class Diagram"
+class ProcessBlocks {
+  -_blocks : List[Blocks]
+  +getInstructionString() : str
+}
+@enduml

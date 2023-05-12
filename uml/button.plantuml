@@ -1,0 +1,17 @@
+@startuml
+scale 2
+title "UML Class Diagram"
+class Button {
+  -_image : str
+  -_hovering_image : str
+  -_x_pos : int
+  -_y_pos : int
+  -_font : str
+  -_base_color : str
+  -_hovering_color : str
+  -_text : str
+  +update(screen) : None
+  +checkForInput(position) : bool
+  +changeColor(position) : None
+}
+@enduml

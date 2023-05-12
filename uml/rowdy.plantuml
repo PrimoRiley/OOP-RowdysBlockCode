@@ -1,0 +1,16 @@
+@startuml
+scale 2
+title "UML Class Diagram"
+class Rowdy {
+  -_coords : tuple
+  -_facing : str
+  -_hitbox : rect
+  -_image : str
+  +move() : None
+  +turn_right() : None
+  +turn_left() : None
+  +wallCollide(walls) : bool
+  +foodCollide(foods) : None
+  +wallOnRight(walls) : bool
+}
+@enduml

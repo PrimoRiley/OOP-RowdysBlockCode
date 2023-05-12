@@ -1,0 +1,10 @@
+@startuml
+scale 2
+title "UML Class Diagram"
+class Block {
+  -_coords : tuple
+  -_color : str
+  -_img : str
+  +setImage() : None
+}
+@enduml

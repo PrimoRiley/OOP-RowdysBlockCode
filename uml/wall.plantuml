@@ -1,0 +1,9 @@
+@startuml
+scale 2
+title "UML Class Diagram"
+class Wall {
+  -_image : str
+  -_coords : tuple
+  -_hitbox : rect
+}
+@enduml

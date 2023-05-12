@@ -1,0 +1,13 @@
+@startuml
+skinparam shadowing false
+
+title Class Diagram Example
+
+main --|> Block : manages
+main --|> Button : manages
+main --|> Food : manages
+main --|> ProcessBlocks : manages
+main --|> Rowdy : manages
+main --|> Wall : manages
+
+@enduml

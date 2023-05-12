@@ -1,0 +1,4 @@
+@startuml
+class ProcessBlocks
+ProcessBlocks -* Blocks : composed and manages >
+@enduml
