@@ -2,10 +2,6 @@ import pygame
 import os
 from typing import Tuple
 
-img = pygame.image.load(os.path.join('Assets', 'Food_40.png'))
-blank = pygame.image.load(os.path.join('Assets', 'blank.png'))
-
-
 class Food(object):
     def __init__(self, coords:Tuple[int, int]) -> None:
         """Food object intializer
@@ -18,47 +14,49 @@ class Food(object):
 
         self._coords = coords
         self._hitbox = pygame.Rect(coords, (50, 50))
-        self._image = pygame.transform.rotate(img, 0)
+        self._image = pygame.transform.rotate(self.img, 0)
         self._isEaten = False
 
     @property
     def hitbox(self) -> pygame.Rect:
-        """Hitbox getter
-
-        Returns:
-            pygame.Rect: rect object the size of the hitbox
-        """        
         return self._hitbox
-    
+
     @hitbox.setter
     def hitbox(self, value:pygame.Rect) -> None:
-        """Hitbox setter
-
-        Args:
-            value (pygame.Rect): rect object to set hitbox
-        """        
         self._hitbox = value
 
     @property
     def isEaten(self) -> bool:
-        """isEaten getter
+        """Boolean value indicating if character reached food
 
         Returns:
-            bool: returns True if food is eaten, False otherwise
+            bool: True or false
         """        
         return self._isEaten
-        
+    
     @isEaten.setter
-    def isEaten(self, value:bool) -> None:
-        """isEaten setter
-
-        Args:
-            value (bool): boolean value to set 
-        """        
+    def isEaten(self, value: bool) -> None:
         self._isEaten = value
-
+    
     def blank(self) -> None:
-        """Make food disapear 
+        """Make food invisible
         """        
+        self._image = pygame.transform.rotate(self.blankimg, 0)
+        self.isEaten = True
+import pygame
+import os
+
+img = pygame.image.load(os.path.join('Assets', 'Food_40.png'))
+blank = pygame.image.load(os.path.join('Assets', 'blank.png'))
+
+
+class Food(object):
+    def __init__(self, coords):
+        self._coords = coords
+        self.hitbox = pygame.Rect(coords, (45, 45))
+        self._image = pygame.transform.rotate(img, 0)
+        self.isEaten = False
+
+    def blank(self):
         self._image = pygame.transform.rotate(blank, 0)
         self.isEaten = True
